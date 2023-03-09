@@ -11,9 +11,10 @@ class CallsLogModel {
   final List<Info> addresses;
   final String image;
   final String subject;
+  final String reasong;
 
   CallsLogModel(this.name, this.status, this.color, this.phones, this.emails,
-      this.addresses, this.image, this.subject);
+      this.addresses, this.image, this.subject, this.reasong);
 }
 
 class Info {
@@ -44,6 +45,7 @@ List<CallsLogModel> callsLogs = [
     ],
     AppAssets.person,
     'Nike LTD',
+    'To confirm deadlines.',
   ),
   CallsLogModel(
     'Ali Hassan',
@@ -66,6 +68,7 @@ List<CallsLogModel> callsLogs = [
     AppAssets.person,
     'Warner Bros.'
         'Nike LTD',
+    'To confirm deadlines.',
   ),
   CallsLogModel(
       'Ali Hassan',
@@ -86,7 +89,8 @@ List<CallsLogModel> callsLogs = [
         Info('Home Address', '+1 995 123 7541'),
       ],
       AppAssets.person,
-      'Warner Bros.'),
+      'Warner Bros.',
+      'Discovering potential business opportunities.'),
   CallsLogModel(
       'Ali Hassan',
       'New'.toUpperCase(),
@@ -106,27 +110,30 @@ List<CallsLogModel> callsLogs = [
         Info('Home Address', '+1 995 123 7541'),
       ],
       AppAssets.person,
-      'Warner Bros.'),
+      'Warner Bros.',
+      'Discovering potential business opportunities.'),
   CallsLogModel(
-      'Ali Hassan',
-      'Future call'.toUpperCase(),
-      AppColors.babyBlue,
-      [
-        Info('Office Phone', '+1 995 123 7541'),
-        Info('Mobile Phone', '+1 995 123 7541'),
-        Info('Mobile Phone', '+1 995 123 7541'),
-      ],
-      [
-        Info('Business Email', '+1 995 123 7541'),
-        Info('Personal Email', '+1 995 123 7541'),
-        Info('Other Email', '+1 995 123 7541'),
-      ],
-      [
-        Info('Office Address', '+1 995 123 7541'),
-        Info('Home Address', '+1 995 123 7541'),
-      ],
-      AppAssets.person,
-      'Atlantic Records'),
+    'Ali Hassan',
+    'Future call'.toUpperCase(),
+    AppColors.babyBlue,
+    [
+      Info('Office Phone', '+1 995 123 7541'),
+      Info('Mobile Phone', '+1 995 123 7541'),
+      Info('Mobile Phone', '+1 995 123 7541'),
+    ],
+    [
+      Info('Business Email', '+1 995 123 7541'),
+      Info('Personal Email', '+1 995 123 7541'),
+      Info('Other Email', '+1 995 123 7541'),
+    ],
+    [
+      Info('Office Address', '+1 995 123 7541'),
+      Info('Home Address', '+1 995 123 7541'),
+    ],
+    AppAssets.person,
+    'To confirm deadlines.',
+    'Atlantic Records',
+  ),
   CallsLogModel(
       'Ali Hassan',
       'New'.toUpperCase(),
@@ -146,27 +153,30 @@ List<CallsLogModel> callsLogs = [
         Info('Home Address', '+1 995 123 7541'),
       ],
       AppAssets.person,
-      'Atlantic Records'),
+      'Atlantic Records',
+      'Negotiate deal fees and other financials.'),
   CallsLogModel(
-      'Ali Hassan',
-      'Future call'.toUpperCase(),
-      AppColors.darkred,
-      [
-        Info('Office Phone', '+1 995 123 7541'),
-        Info('Mobile Phone', '+1 995 123 7541'),
-        Info('Mobile Phone', '+1 995 123 7541'),
-      ],
-      [
-        Info('Business Email', '+1 995 123 7541'),
-        Info('Personal Email', '+1 995 123 7541'),
-        Info('Other Email', '+1 995 123 7541'),
-      ],
-      [
-        Info('Office Address', '+1 995 123 7541'),
-        Info('Home Address', '+1 995 123 7541'),
-      ],
-      AppAssets.person,
-      'Atlantic Records'),
+    'Ali Hassan',
+    'Future call'.toUpperCase(),
+    AppColors.darkred,
+    [
+      Info('Office Phone', '+1 995 123 7541'),
+      Info('Mobile Phone', '+1 995 123 7541'),
+      Info('Mobile Phone', '+1 995 123 7541'),
+    ],
+    [
+      Info('Business Email', '+1 995 123 7541'),
+      Info('Personal Email', '+1 995 123 7541'),
+      Info('Other Email', '+1 995 123 7541'),
+    ],
+    [
+      Info('Office Address', '+1 995 123 7541'),
+      Info('Home Address', '+1 995 123 7541'),
+    ],
+    AppAssets.person,
+    'To confirm deadlines.',
+    'Atlantic Records',
+  ),
   CallsLogModel(
       'Ali Hassan',
       'Left Word'.toUpperCase(),
@@ -186,7 +196,8 @@ List<CallsLogModel> callsLogs = [
         Info('Home Address', '+1 995 123 7541'),
       ],
       AppAssets.person,
-      'Universal Studio'),
+      'Universal Studio',
+      'Negotiate deal fees and other financials.'),
   CallsLogModel(
       'Ali Hassan',
       'New'.toUpperCase(),
@@ -206,7 +217,8 @@ List<CallsLogModel> callsLogs = [
         Info('Home Address', '+1 995 123 7541'),
       ],
       AppAssets.person,
-      'Universal Studio'),
+      'Universal Studio',
+      'Discovering potential business opportunities.'),
   CallsLogModel(
       'Ali Hassan',
       'Left Word'.toUpperCase(),
@@ -226,27 +238,30 @@ List<CallsLogModel> callsLogs = [
         Info('Home Address', '+1 995 123 7541'),
       ],
       AppAssets.person,
-      'Universal Studio'),
+      'Universal Studio',
+      'Discovering potential business opportunities.'),
   CallsLogModel(
-      'Ali Hassan',
-      'New'.toUpperCase(),
-      AppColors.black,
-      [
-        Info('Office Phone', '+1 995 123 7541'),
-        Info('Mobile Phone', '+1 995 123 7541'),
-        Info('Mobile Phone', '+1 995 123 7541'),
-      ],
-      [
-        Info('Business Email', '+1 995 123 7541'),
-        Info('Personal Email', '+1 995 123 7541'),
-        Info('Other Email', '+1 995 123 7541'),
-      ],
-      [
-        Info('Office Address', '+1 995 123 7541'),
-        Info('Home Address', '+1 995 123 7541'),
-      ],
-      AppAssets.person,
-      'Warner Bros.'),
+    'Ali Hassan',
+    'New'.toUpperCase(),
+    AppColors.black,
+    [
+      Info('Office Phone', '+1 995 123 7541'),
+      Info('Mobile Phone', '+1 995 123 7541'),
+      Info('Mobile Phone', '+1 995 123 7541'),
+    ],
+    [
+      Info('Business Email', '+1 995 123 7541'),
+      Info('Personal Email', '+1 995 123 7541'),
+      Info('Other Email', '+1 995 123 7541'),
+    ],
+    [
+      Info('Office Address', '+1 995 123 7541'),
+      Info('Home Address', '+1 995 123 7541'),
+    ],
+    AppAssets.person,
+    'Warner Bros.',
+    'To confirm deadlines.',
+  ),
   CallsLogModel(
       'Ali Hassan',
       'Completed'.toUpperCase(),
@@ -266,7 +281,8 @@ List<CallsLogModel> callsLogs = [
         Info('Home Address', '+1 995 123 7541'),
       ],
       AppAssets.person,
-      'Warner Bros.'),
+      'Warner Bros.',
+      'Negotiate deal fees and other financials.'),
   CallsLogModel(
     'Ali Hassan',
     'New'.toUpperCase(),
@@ -287,6 +303,7 @@ List<CallsLogModel> callsLogs = [
     ],
     AppAssets.person,
     'Nike LTD',
+    'Discovering potential business opportunities.',
   ),
   CallsLogModel(
     'Ali Hassan',
@@ -308,25 +325,28 @@ List<CallsLogModel> callsLogs = [
     ],
     AppAssets.person,
     'Nike LTD',
+    'Discovering potential business opportunities.',
   ),
   CallsLogModel(
-      'Ali Hassan',
-      'Future call'.toUpperCase(),
-      AppColors.green,
-      [
-        Info('Office Phone', '+1 995 123 7541'),
-        Info('Mobile Phone', '+1 995 123 7541'),
-        Info('Mobile Phone', '+1 995 123 7541'),
-      ],
-      [
-        Info('Business Email', '+1 995 123 7541'),
-        Info('Personal Email', '+1 995 123 7541'),
-        Info('Other Email', '+1 995 123 7541'),
-      ],
-      [
-        Info('Office Address', '+1 995 123 7541'),
-        Info('Home Address', '+1 995 123 7541'),
-      ],
-      AppAssets.person,
-      'Warner Bros.'),
+    'Ali Hassan',
+    'Future call'.toUpperCase(),
+    AppColors.green,
+    [
+      Info('Office Phone', '+1 995 123 7541'),
+      Info('Mobile Phone', '+1 995 123 7541'),
+      Info('Mobile Phone', '+1 995 123 7541'),
+    ],
+    [
+      Info('Business Email', '+1 995 123 7541'),
+      Info('Personal Email', '+1 995 123 7541'),
+      Info('Other Email', '+1 995 123 7541'),
+    ],
+    [
+      Info('Office Address', '+1 995 123 7541'),
+      Info('Home Address', '+1 995 123 7541'),
+    ],
+    AppAssets.person,
+    'Warner Bros.',
+    'To confirm deadlines.',
+  ),
 ];

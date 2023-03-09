@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_log/controller/add_new_entry_view_model.dart';
 import 'package:phone_log/controller/auth_view_model.dart';
-import 'package:phone_log/controller/layout_view_model.dart';
 import 'package:phone_log/model/calls_log_model.dart';
 import 'package:phone_log/view/pages/add_new_entry.dart';
 import 'package:phone_log/view/pages/contact_adresses.dart';
@@ -30,10 +29,7 @@ class AppRouter {
                 create: (context) => AuthViewModel(),
                 child: const LoginPage()));
       case AppRouterNames.layout:
-        return MaterialPageRoute(
-            builder: (_) => ChangeNotifierProvider(
-                create: (context) => LayoutViewModel(),
-                child: const LayoutPage()));
+        return MaterialPageRoute(builder: (_) => const LayoutPage());
       case AppRouterNames.addNewEntry:
         return MaterialPageRoute(
             builder: (_) => ChangeNotifierProvider(

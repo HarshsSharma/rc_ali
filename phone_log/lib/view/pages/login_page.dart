@@ -40,6 +40,7 @@ class LoginPage extends StatelessWidget {
                       child: Column(
                     children: [
                       TextFormField(
+                        textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
                         style: const TextStyle(
                             color: AppColors.borderGrey, fontSize: 18),

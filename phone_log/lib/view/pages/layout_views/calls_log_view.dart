@@ -50,13 +50,13 @@ class CallsLogView extends StatelessWidget {
           color: AppColors.white,
           child: ListView.separated(
               itemBuilder: (context, index) => CallLogItem(
-                  onTap: () {
-                    Navigator.pushNamed(context, AppRouterNames.contactDetails,
-                        arguments: callsLogs[index]);
-                  },
-                  status: callsLogs[index].status,
-                  name: callsLogs[index].name,
-                  color: callsLogs[index].color),
+                    logModel: callsLogs[index],
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, AppRouterNames.contactDetails,
+                          arguments: callsLogs[index]);
+                    },
+                  ),
               separatorBuilder: (context, index) => const Divider(),
               itemCount: callsLogs.length),
         ))
