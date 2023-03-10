@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:phone_log/core/shared/enums.dart';
 import 'package:phone_log/view/pages/layout_views/calls_log_view.dart';
 import 'package:phone_log/view/pages/layout_views/notifications_view.dart';
@@ -14,7 +15,10 @@ class LayoutViewModel extends ChangeNotifier {
     const SettingsView(),
   ];
   int currentLayoutIndex = 0;
+  bool hasConnection = true;
   String gridType = GridType.oneLine.name;
+  bool callsLogSelectionMode = false;
+  List<String> notificationActive = [];
   void changeCurrentLayoutIndex(int index) {
     currentLayoutIndex = index;
     notifyListeners();
@@ -22,6 +26,25 @@ class LayoutViewModel extends ChangeNotifier {
 
   void changeGridType(String type) {
     gridType = type;
+    notifyListeners();
+  }
+
+  void toggleNotificaionAcctivation(String notification) {
+    if (notificationActive.contains(notification)) {
+      notificationActive.remove(notification);
+    } else {
+      notificationActive.add(notification);
+    }
+    notifyListeners();
+  }
+
+  void toggleSelectioMode() {
+    callsLogSelectionMode = !callsLogSelectionMode;
+    notifyListeners();
+  }
+
+  void checkConnection() async {
+    hasConnection = await InternetConnectionChecker().hasConnection;
     notifyListeners();
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phone_log/controller/layout_view_model.dart';
 import 'package:phone_log/core/constant/app_assets.dart';
 import 'package:phone_log/core/constant/app_colors.dart';
+import 'package:phone_log/core/router.dart';
 import 'package:phone_log/core/shared/enums.dart';
 import 'package:phone_log/view/widget/default_info.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +46,9 @@ class SettingsView extends StatelessWidget {
           children: [
             ListTile(
               onTap: () {
-                showLanguagesDialog(context);
+                showSelectionDialog(
+                  context,
+                );
               },
               title: const Text(
                 'Grid Information',
@@ -61,7 +64,10 @@ class SettingsView extends StatelessWidget {
             DefaultInfo(
                 title: 'Notification Preferences',
                 info: 'All Enabled',
-                onTap: () {}),
+                onTap: () {
+                  Navigator.pushNamed(
+                      context, AppRouterNames.notificationsPref);
+                }),
             const Divider(
               height: 20,
               color: AppColors.borderLightGrey,
@@ -102,7 +108,7 @@ class SettingsView extends StatelessWidget {
   }
 }
 
-showLanguagesDialog(context) {
+showSelectionDialog(context) {
   showDialog(
     context: context,
     builder: (context) {
@@ -163,3 +169,41 @@ showLanguagesDialog(context) {
     },
   );
 }
+// showSelectionDialog(context, String title, List<Widget> children) {
+//   showDialog(
+//     context: context,
+//     builder: (context) {
+//       return SimpleDialog(
+//         contentPadding: const EdgeInsets.all(20),
+//         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+//         backgroundColor: Colors.white,
+//         children: [
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               const IconButton(
+//                   onPressed: null,
+//                   icon: Icon(
+//                     Icons.clear,
+//                     color: AppColors.white,
+//                   )),
+//               Text(title),
+//               IconButton(
+//                   onPressed: () {
+//                     Navigator.pop(context);
+//                   },
+//                   icon: const Icon(
+//                     Icons.clear,
+//                     color: AppColors.black,
+//                   )),
+//             ],
+//           ),
+//           const Divider(
+//             color: AppColors.scaffoldBG,
+//           ),
+//           Column(children: children)
+//         ],
+//       );
+//     },
+//   );
+// }

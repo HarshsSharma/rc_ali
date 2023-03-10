@@ -7,6 +7,8 @@ class AppColors {
   static const Color babyBlue = Color(0xff30C4EB);
   static const Color darkGrey = Color(0xff808896);
   static const Color greyBG = Color(0xffECF0F9);
+  static const Color overlayBlue = Color(0xffDBF8FF);
+  static const Color overlayRed = Color(0xffFFE5E2);
 
   static const Color shadowColor = Color.fromRGBO(60, 161, 110, 0.13);
   static const Color darkred = Color(0xffA91C26);

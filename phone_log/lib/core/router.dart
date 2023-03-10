@@ -7,8 +7,11 @@ import 'package:phone_log/view/pages/contact_adresses.dart';
 import 'package:phone_log/view/pages/contact_details.dart';
 import 'package:phone_log/view/pages/contact_emails.dart';
 import 'package:phone_log/view/pages/contact_phones.dart';
+import 'package:phone_log/view/pages/edit_bulk.dart';
+import 'package:phone_log/view/pages/filter_screen.dart';
 import 'package:phone_log/view/pages/layout_page.dart';
 import 'package:phone_log/view/pages/login_page.dart';
+import 'package:phone_log/view/pages/notifications_preferences.dart';
 import 'package:provider/provider.dart';
 
 class AppRouterNames {
@@ -18,6 +21,9 @@ class AppRouterNames {
   static const String contactPhones = '/contact_phones';
   static const String contactEmails = '/contact_emails';
   static const String contactAddresses = '/contact_addresses';
+  static const String editBulk = '/edit_bulk';
+  static const String filterLog = '/filter_log';
+  static const String notificationsPref = '/notifications_pref';
 }
 
 class AppRouter {
@@ -68,6 +74,13 @@ class AppRouter {
                   infoList: infoList,
                   name: name,
                 ));
+      case AppRouterNames.editBulk:
+        return MaterialPageRoute(builder: (_) => const EditBulk());
+      case AppRouterNames.filterLog:
+        return MaterialPageRoute(builder: (_) => const FilterScreen());
+      case AppRouterNames.notificationsPref:
+        return MaterialPageRoute(
+            builder: (_) => const NotificationsPreferences());
       default:
         return MaterialPageRoute(
           builder: (context) => Scaffold(

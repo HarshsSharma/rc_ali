@@ -5,8 +5,9 @@ import 'package:phone_log/core/constant/app_colors.dart';
 import 'package:phone_log/core/router.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => LayoutViewModel(),
+          create: (context) => LayoutViewModel()..checkConnection(),
         )
       ],
       child: MaterialApp(

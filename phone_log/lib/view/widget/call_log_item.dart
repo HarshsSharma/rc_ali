@@ -6,9 +6,9 @@ import 'package:phone_log/model/calls_log_model.dart';
 import 'package:provider/provider.dart';
 
 class CallLogItem extends StatelessWidget {
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final CallsLogModel logModel;
-  const CallLogItem({super.key, required this.onTap, required this.logModel});
+  const CallLogItem({super.key, this.onTap, required this.logModel});
 
   @override
   Widget build(BuildContext context) {
