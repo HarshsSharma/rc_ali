@@ -74,8 +74,11 @@ class CallsLogView extends StatelessWidget {
                   AppBar(
                     toolbarHeight: kToolbarHeight,
                     backgroundColor: Colors.transparent,
-                    leading: const Center(
-                      child: Text('5'),
+                    leading: Center(
+                      child: Consumer<LayoutViewModel>(
+                        builder: (context, value, child) =>
+                            Text(value.selected.toString()),
+                      ),
                     ),
                     actions: [
                       IconButton(
@@ -159,6 +162,12 @@ class CallsLogView extends StatelessWidget {
                 context.read<LayoutViewModel>().toggleSelectioMode();
               },
               selectedColor: AppColors.overlayBlue,
+              afterSelect: (index) {
+                context.read<LayoutViewModel>().increaseSelected();
+              },
+              afterUnSelect: (index) {
+                context.read<LayoutViewModel>().decreaseSelected();
+              },
               listItem: (context, index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: CallLogItem(

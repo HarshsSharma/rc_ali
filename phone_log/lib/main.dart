@@ -3,7 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:phone_log/controller/layout_view_model.dart';
 import 'package:phone_log/core/constant/app_colors.dart';
 import 'package:phone_log/core/router.dart';
+import 'package:phone_log/individual_pages/time_tracking/controller/time_tracking_controller.dart';
 import 'package:provider/provider.dart';
+
+import 'individual_pages/time_tracking/view/time_tracking.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,17 +32,24 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => LayoutViewModel()..checkConnection(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TimeTrackingViewModel(),
         )
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Phone Log',
           theme: ThemeData(
-            appBarTheme: const AppBarTheme(elevation: 0, toolbarHeight: 0),
+            appBarTheme: const AppBarTheme(
+              elevation: 0,
+              toolbarHeight: 0,
+            ),
             scaffoldBackgroundColor: AppColors.scaffoldBG,
             primarySwatch: Colors.blue,
           ),
           onGenerateRoute: appRouter.onGenerateRoute),
+      //home: const TimeTracking(),
     );
   }
 }

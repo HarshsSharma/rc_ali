@@ -59,9 +59,7 @@ class NotificationsPreferences extends StatelessWidget {
             .map((e) => NotificationSwitch(
                   title: e,
                   value: false,
-                  onChanged: (bool value) {
-                    print(value);
-                  },
+                  onChanged: (bool value) {},
                 ))
             .toList()
       ]),

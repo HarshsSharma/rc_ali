@@ -81,8 +81,8 @@ class _ListViewSelectionState extends State<ListViewSelection> {
                 } else {
                   _selectedIndices.add(index);
                   setState(() {});
-                  if (widget.afterUnSelect != null) {
-                    widget.afterUnSelect!(index);
+                  if (widget.afterSelect != null) {
+                    widget.afterSelect!(index);
                   }
                 }
               } else {

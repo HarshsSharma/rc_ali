@@ -11,7 +11,7 @@ class LayoutViewModel extends ChangeNotifier {
   List<Widget> layoutViews = [
     const CallsLogView(),
     const ContactsView(),
-    const NotificationsView(),
+    NotificationsView(),
     const SettingsView(),
   ];
   int currentLayoutIndex = 0;
@@ -40,11 +40,23 @@ class LayoutViewModel extends ChangeNotifier {
 
   void toggleSelectioMode() {
     callsLogSelectionMode = !callsLogSelectionMode;
+    selected = 1;
     notifyListeners();
   }
 
   void checkConnection() async {
     hasConnection = await InternetConnectionChecker().hasConnection;
+    notifyListeners();
+  }
+
+  int selected = 0;
+  void increaseSelected() {
+    selected += 1;
+    notifyListeners();
+  }
+
+  void decreaseSelected() {
+    selected -= 1;
     notifyListeners();
   }
 }
