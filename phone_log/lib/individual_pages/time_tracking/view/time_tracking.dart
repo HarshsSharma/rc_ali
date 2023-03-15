@@ -89,11 +89,24 @@ class _TimeTrackingState extends State<TimeTracking> {
                           (index) => SizedBox(
                             height: 120,
                             width: 100,
-                            child: Text(
-                              '${index.toString().padLeft(2, '0')}:00',
-                              style: TextStyle(
-                                  color: Colors.black87, fontSize: 16),
-                              textAlign: TextAlign.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${index.toString().padLeft(2, '0')}:00',
+                                  style: TextStyle(
+                                      color: Colors.black87, fontSize: 16),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const Spacer(),
+                                Text(
+                                  '${index.toString().padLeft(2, '0')}:30',
+                                  style: TextStyle(
+                                      color: Colors.black87, fontSize: 16),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const Spacer(),
+                              ],
                             ),
                           ),
                         ),
@@ -191,7 +204,8 @@ class TimeTrackingItem extends StatelessWidget {
         width: width,
         child: Wrap(
           children: [
-            SizedBox(
+            Container(
+              padding: const EdgeInsets.only(bottom: 5),
               width: width,
               child: Text(
                 timeEntity.project.name,
@@ -201,9 +215,12 @@ class TimeTrackingItem extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            Text(
-              timeEntity.taskName,
-              style: TextStyle(color: Colors.grey, fontSize: 20),
+            Container(
+              padding: const EdgeInsets.only(bottom: 5),
+              child: Text(
+                timeEntity.taskName,
+                style: TextStyle(color: Colors.grey, fontSize: 20),
+              ),
             ),
             Text(
               timeEntity.note,
