@@ -13,6 +13,13 @@ class TimeTrackingViewModel extends ChangeNotifier {
     return dates;
   }
 
+  void goToTheCurrentTime(ScrollController controller) {
+    final now = TimeOfDay.now();
+    final startOffset = (now.hour * 60 + now.minute) * 2.0;
+    controller.animateTo(startOffset - 50,
+        duration: const Duration(milliseconds: 100), curve: Curves.easeOut);
+  }
+
   List<List<TimeEntity>> items = [
     [
       TimeEntity(
@@ -123,7 +130,7 @@ class TimeTrackingViewModel extends ChangeNotifier {
         'Task Name',
         Project('Project Name', Colors.green),
         'note ' * 5,
-        TimeOfDay.now(),
+        const TimeOfDay(hour: 16, minute: 30),
         const TimeOfDay(hour: 17, minute: 30),
       ),
       TimeEntity(

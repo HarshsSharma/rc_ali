@@ -38,18 +38,19 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Phone Log',
-          theme: ThemeData(
-            appBarTheme: const AppBarTheme(
-              elevation: 0,
-              toolbarHeight: 0,
-            ),
-            scaffoldBackgroundColor: AppColors.scaffoldBG,
-            primarySwatch: Colors.blue,
+        debugShowCheckedModeBanner: false,
+        title: 'Phone Log',
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            elevation: 0,
+            toolbarHeight: 0,
           ),
-          onGenerateRoute: appRouter.onGenerateRoute),
-      //home: const TimeTracking(),
+          scaffoldBackgroundColor: AppColors.scaffoldBG,
+          primarySwatch: Colors.blue,
+        ),
+        home: const TimeTracking(),
+        // onGenerateRoute: appRouter.onGenerateRoute,
+      ),
     );
   }
 }

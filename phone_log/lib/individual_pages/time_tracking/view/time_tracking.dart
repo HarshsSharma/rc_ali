@@ -1,18 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
 import 'package:phone_log/individual_pages/time_tracking/controller/time_tracking_controller.dart';
 import 'package:phone_log/individual_pages/time_tracking/model/time_tracking_model.dart';
 import 'package:provider/provider.dart';
 
-class TimeTracking extends StatelessWidget {
+class TimeTracking extends StatefulWidget {
   const TimeTracking({super.key});
+
+  @override
+  State<TimeTracking> createState() => _TimeTrackingState();
+}
+
+class _TimeTrackingState extends State<TimeTracking> {
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    SchedulerBinding.instance.addPostFrameCallback((_) => context
+        .read<TimeTrackingViewModel>()
+        .goToTheCurrentTime(_scrollController));
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color(0xff161652),
+        backgroundColor: const Color(0xff161652),
         toolbarHeight: kToolbarHeight,
         title: const Text('Time Tracking'),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.menu))],
@@ -48,71 +72,95 @@ class TimeTracking extends StatelessWidget {
                 .toList(),
           ),
           Expanded(
-              child: SingleChildScrollView(
-            child: Container(
-              width: double.infinity,
-              color: Colors.grey.withOpacity(.5),
-              height: 120 * 24,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 100,
-                    child: Column(
-                      children: List.generate(
-                        24,
-                        (index) => SizedBox(
-                          height: 120,
-                          width: 100,
-                          child: Text(
-                            '${index.toString().padLeft(2, '0')}:00',
-                            style:
-                                TextStyle(color: Colors.black87, fontSize: 16),
-                            textAlign: TextAlign.center,
+              child: ListView(
+            controller: _scrollController,
+            children: [
+              Container(
+                width: double.infinity,
+                color: Colors.grey.withOpacity(.5),
+                height: 120 * 24,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      child: Column(
+                        children: List.generate(
+                          24,
+                          (index) => SizedBox(
+                            height: 120,
+                            width: 100,
+                            child: Text(
+                              '${index.toString().padLeft(2, '0')}:00',
+                              style: TextStyle(
+                                  color: Colors.black87, fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(child: LayoutBuilder(builder: (p0, p1) {
-                    return Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        if (context
-                                .watch<TimeTrackingViewModel>()
-                                .items
-                                .length >
-                            context.watch<TimeTrackingViewModel>().dateSelected)
-                          ...context
-                              .watch<TimeTrackingViewModel>()
-                              .items[context
+                    Expanded(child: LayoutBuilder(builder: (p0, p1) {
+                      return Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          if (context
                                   .watch<TimeTrackingViewModel>()
-                                  .dateSelected]
-                              .map((e) => TimeTrackingItem(
-                                    timeEntity: e,
-                                    width: p1.maxWidth,
-                                  ))
-                              .toList(),
-                        Column(
-                          children: List.generate(
-                              24,
-                              (index) => Container(
-                                    height: 120,
-                                    decoration: BoxDecoration(
-                                        border: index != 0
-                                            ? const Border(
-                                                top: BorderSide(
-                                                    color: Colors.grey))
-                                            : null),
-                                  )),
-                        ),
-                      ],
-                    );
-                  }))
-                ],
-              ),
-            ),
+                                  .items
+                                  .length >
+                              context
+                                  .watch<TimeTrackingViewModel>()
+                                  .dateSelected)
+                            ...context
+                                .watch<TimeTrackingViewModel>()
+                                .items[context
+                                    .watch<TimeTrackingViewModel>()
+                                    .dateSelected]
+                                .map((e) => TimeTrackingItem(
+                                      timeEntity: e,
+                                      width: p1.maxWidth,
+                                    ))
+                                .toList(),
+                          Column(
+                            children: List.generate(
+                                24,
+                                (index) => Container(
+                                      height: 120,
+                                      decoration: BoxDecoration(
+                                          border: index != 0
+                                              ? const Border(
+                                                  top: BorderSide(
+                                                      color: Colors.grey))
+                                              : null),
+                                    )),
+                          ),
+                          Positioned(
+                            top: (TimeOfDay.now().hour * 60 +
+                                    TimeOfDay.now().minute) *
+                                2.0,
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: p1.maxWidth,
+                                  height: 3,
+                                  color: Colors.green,
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      );
+                    }))
+                  ],
+                ),
+              )
+            ],
           ))
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+        backgroundColor: const Color(0xff161652),
       ),
     );
   }
