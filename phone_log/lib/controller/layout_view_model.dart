@@ -11,7 +11,7 @@ class LayoutViewModel extends ChangeNotifier {
   List<Widget> layoutViews = [
     const CallsLogView(),
     const ContactsView(),
-    NotificationsView(),
+    const NotificationsView(),
     const SettingsView(),
   ];
   int currentLayoutIndex = 0;

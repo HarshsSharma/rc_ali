@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
 import 'package:phone_log/individual_pages/time_tracking/controller/time_tracking_controller.dart';
 import 'package:phone_log/individual_pages/time_tracking/model/time_tracking_model.dart';
+import 'package:phone_log/individual_pages/time_tracking/view/add_time_entry.dart';
 import 'package:provider/provider.dart';
 
 class TimeTracking extends StatefulWidget {
@@ -39,7 +40,7 @@ class _TimeTrackingState extends State<TimeTracking> {
         backgroundColor: const Color(0xff161652),
         toolbarHeight: kToolbarHeight,
         title: const Text('Time Tracking'),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.menu))],
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.menu))],
       ),
       body: Column(
         children: [
@@ -94,14 +95,14 @@ class _TimeTrackingState extends State<TimeTracking> {
                               children: [
                                 Text(
                                   '${index.toString().padLeft(2, '0')}:00',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.black87, fontSize: 16),
                                   textAlign: TextAlign.center,
                                 ),
                                 const Spacer(),
                                 Text(
                                   '${index.toString().padLeft(2, '0')}:30',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.black87, fontSize: 16),
                                   textAlign: TextAlign.center,
                                 ),
@@ -116,23 +117,6 @@ class _TimeTrackingState extends State<TimeTracking> {
                       return Stack(
                         fit: StackFit.expand,
                         children: [
-                          if (context
-                                  .watch<TimeTrackingViewModel>()
-                                  .items
-                                  .length >
-                              context
-                                  .watch<TimeTrackingViewModel>()
-                                  .dateSelected)
-                            ...context
-                                .watch<TimeTrackingViewModel>()
-                                .items[context
-                                    .watch<TimeTrackingViewModel>()
-                                    .dateSelected]
-                                .map((e) => TimeTrackingItem(
-                                      timeEntity: e,
-                                      width: p1.maxWidth,
-                                    ))
-                                .toList(),
                           Column(
                             children: List.generate(
                                 24,
@@ -146,6 +130,24 @@ class _TimeTrackingState extends State<TimeTracking> {
                                               : null),
                                     )),
                           ),
+                          if (context
+                                  .watch<TimeTrackingViewModel>()
+                                  .items
+                                  .length >=
+                              context
+                                  .watch<TimeTrackingViewModel>()
+                                  .dateSelected)
+                            ...context
+                                .watch<TimeTrackingViewModel>()
+                                .items[context
+                                        .watch<TimeTrackingViewModel>()
+                                        .dateSelected -
+                                    1]
+                                .map((e) => TimeTrackingItem(
+                                      timeEntity: e,
+                                      width: p1.maxWidth,
+                                    ))
+                                .toList(),
                           Positioned(
                             top: (TimeOfDay.now().hour * 60 +
                                     TimeOfDay.now().minute) *
@@ -171,9 +173,17 @@ class _TimeTrackingState extends State<TimeTracking> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddTimeEntity(
+                  dateTime: context.read<TimeTrackingViewModel>().currentDate,
+                ),
+              ));
+        },
         backgroundColor: const Color(0xff161652),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -219,12 +229,12 @@ class TimeTrackingItem extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 5),
               child: Text(
                 timeEntity.taskName,
-                style: TextStyle(color: Colors.grey, fontSize: 20),
+                style: const TextStyle(color: Colors.grey, fontSize: 20),
               ),
             ),
             Text(
               timeEntity.note,
-              style: TextStyle(color: Colors.grey, fontSize: 20),
+              style: const TextStyle(color: Colors.grey, fontSize: 20),
             ),
           ],
         ),
@@ -243,7 +253,7 @@ class DayCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.read<TimeTrackingViewModel>().selectDay(day.weekday);
+        context.read<TimeTrackingViewModel>().selectDay(day.weekday, day);
       },
       child: Container(
         decoration: BoxDecoration(
