@@ -116,6 +116,7 @@ class _TimeTrackingState extends State<TimeTracking> {
                     Expanded(child: LayoutBuilder(builder: (p0, p1) {
                       return Stack(
                         fit: StackFit.expand,
+                        clipBehavior: Clip.none,
                         children: [
                           Column(
                             children: List.generate(
@@ -152,14 +153,11 @@ class _TimeTrackingState extends State<TimeTracking> {
                             top: (TimeOfDay.now().hour * 60 +
                                     TimeOfDay.now().minute) *
                                 2.0,
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: p1.maxWidth,
-                                  height: 3,
-                                  color: Colors.green,
-                                )
-                              ],
+                            left: -100,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 3,
+                              color: Colors.green,
                             ),
                           )
                         ],
@@ -198,6 +196,8 @@ class TimeTrackingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       top: (timeEntity.start.hour * 60 + timeEntity.start.minute) * 2,
+      right: 20,
+      left: 0,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
         decoration: BoxDecoration(
@@ -221,20 +221,20 @@ class TimeTrackingItem extends StatelessWidget {
                 timeEntity.project.name,
                 style: const TextStyle(
                     color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
               ),
             ),
             Container(
               padding: const EdgeInsets.only(bottom: 5),
               child: Text(
                 timeEntity.taskName,
-                style: const TextStyle(color: Colors.grey, fontSize: 20),
+                style: const TextStyle(color: Colors.grey, fontSize: 16),
               ),
             ),
             Text(
               timeEntity.note,
-              style: const TextStyle(color: Colors.grey, fontSize: 20),
+              style: const TextStyle(color: Colors.grey, fontSize: 16),
             ),
           ],
         ),

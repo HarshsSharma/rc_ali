@@ -46,7 +46,7 @@ class SelectTaskView extends StatelessWidget {
                         isSelected: context
                                 .watch<TimeTrackingViewModel>()
                                 .selectedRadio ==
-                            viewModel.tasks.indexOf(e),
+                            viewModel.searchList.indexOf(e),
                         title: e),
                   ))
               .toList()),

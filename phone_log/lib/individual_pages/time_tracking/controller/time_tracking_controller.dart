@@ -293,7 +293,7 @@ class TimeTrackingViewModel extends ChangeNotifier {
         0;
   }
 
-  int selectedRadio = 0;
+  int selectedRadio = -5;
 
   void changeRadioIndex(int index) {
     selectedRadio = index;
@@ -373,6 +373,11 @@ class TimeTrackingViewModel extends ChangeNotifier {
   bool timeStart = true;
   void toggleStartEndTime() {
     timeStart = !timeStart;
+    notifyListeners();
+  }
+
+  void beTimeStart() {
+    timeStart = true;
     notifyListeners();
   }
 

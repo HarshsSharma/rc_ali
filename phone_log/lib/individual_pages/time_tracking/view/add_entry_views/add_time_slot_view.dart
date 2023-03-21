@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:phone_log/individual_pages/time_tracking/controller/time_tracking_controller.dart';
@@ -19,7 +18,10 @@ class _AddTimeslotViewState extends State<AddTimeslotView> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<TimeTrackingViewModel>().setDefaultTimes();
+      if (context.read<TimeTrackingViewModel>().startController.text.isEmpty) {
+        context.read<TimeTrackingViewModel>().setDefaultTimes();
+      }
+
       _hoursControllers.position.isScrollingNotifier.addListener(() {
         context
             .read<TimeTrackingViewModel>()
@@ -89,7 +91,7 @@ class _AddTimeslotViewState extends State<AddTimeslotView> {
                                                             TimeTrackingViewModel>()
                                                         .currentHourIndex
                                                 ? Colors.green
-                                                : Colors.black),
+                                                : Colors.grey),
                                       ),
                                     )),
                             const SizedBox(height: 30)
@@ -128,7 +130,7 @@ class _AddTimeslotViewState extends State<AddTimeslotView> {
                                                                 TimeTrackingViewModel>()
                                                             .currentMinIndex
                                                     ? Colors.green
-                                                    : Colors.black),
+                                                    : Colors.grey),
                                           ),
                                         )),
                                 const SizedBox(height: 30)

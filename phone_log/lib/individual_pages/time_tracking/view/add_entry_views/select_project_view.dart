@@ -49,7 +49,7 @@ class SelectProjectView extends StatelessWidget {
                         isSelected: context
                                 .watch<TimeTrackingViewModel>()
                                 .selectedRadio ==
-                            viewModel.projects.indexOf(e),
+                            viewModel.searchList.indexOf(e),
                         title: e),
                   ))
               .toList()),

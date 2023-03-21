@@ -59,7 +59,8 @@ class AddTimeEntity extends StatelessWidget {
                         builder: (context) => const EntryViews(),
                       ));
                   context.read<TimeTrackingViewModel>().currentView = 0;
-                  context.read<TimeTrackingViewModel>().selectedRadio = 0;
+                  context.read<TimeTrackingViewModel>().selectedRadio = -5;
+                  context.read<TimeTrackingViewModel>().beTimeStart();
                 },
               ),
               ...context.watch<TimeTrackingViewModel>().otherFields,
