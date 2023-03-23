@@ -6,7 +6,8 @@ import 'package:phone_log/core/router.dart';
 import 'package:phone_log/individual_pages/time_tracking/controller/time_tracking_controller.dart';
 import 'package:provider/provider.dart';
 
-import 'individual_pages/time_tracking/view/time_tracking.dart';
+import 'individual_pages/time_tracking/controller/authController.dart';
+import 'individual_pages/time_tracking/view/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,8 +15,8 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light,
-      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.dark,
     ),
   );
   runApp(MyApp(
@@ -35,7 +36,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => TimeTrackingViewModel(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AuthViewModel(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -48,7 +52,8 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.scaffoldBG,
           primarySwatch: Colors.blue,
         ),
-        home: const TimeTracking(),
+        //home: const TimeTracking(),
+        home: const LoginScreen(),
         // onGenerateRoute: appRouter.onGenerateRoute,
       ),
     );

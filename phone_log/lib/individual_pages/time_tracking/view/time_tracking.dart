@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
@@ -15,10 +17,13 @@ class TimeTracking extends StatefulWidget {
 
 class _TimeTrackingState extends State<TimeTracking> {
   late ScrollController _scrollController;
+  late PageController _pageController;
 
   @override
   void initState() {
     _scrollController = ScrollController();
+    _pageController = PageController(initialPage: 1);
+    context.read<TimeTrackingViewModel>().getThe3WeeksDayes(DateTime.now());
     SchedulerBinding.instance.addPostFrameCallback((_) => context
         .read<TimeTrackingViewModel>()
         .goToTheCurrentTime(_scrollController));
@@ -58,19 +63,25 @@ class _TimeTrackingState extends State<TimeTracking> {
             thickness: 1,
             height: 1,
           ),
-          Row(
-            children: context
-                .read<TimeTrackingViewModel>()
-                .getTheWeekDayes(DateTime.now())
-                .map((e) => Expanded(
-                      child: Consumer<TimeTrackingViewModel>(
-                          builder: (context, value, child) {
-                        return DayCard(
-                            day: e,
-                            isSelected: value.dateSelected == e.weekday);
-                      }),
-                    ))
-                .toList(),
+          SizedBox(
+            height: 80,
+            child: ScrollableDayesPageView(pageController: _pageController),
+            // child: ListView.builder(
+            //   scrollDirection: Axis.horizontal,
+            //   itemBuilder: (context, index) => SizedBox(
+            //     width: MediaQuery.of(context).size.width / 7,
+            //     child: Consumer<TimeTrackingViewModel>(
+            //         builder: (context, value, child) {
+            //       return DayCard(
+            //         day: value.threeWeeksDays[index],
+            //         isSelected: value.dateSelected == index,
+            //         index: index,
+            //       );
+            //     }),
+            //   ),
+            //   itemCount:
+            //       context.watch<TimeTrackingViewModel>().threeWeeksDays.length,
+            // ),
           ),
           Expanded(
               child: ListView(
@@ -187,6 +198,48 @@ class _TimeTrackingState extends State<TimeTracking> {
   }
 }
 
+class ScrollableDayesPageView extends StatelessWidget {
+  const ScrollableDayesPageView({
+    super.key,
+    required PageController pageController,
+  }) : _pageController = pageController;
+
+  final PageController _pageController;
+
+  @override
+  Widget build(BuildContext context) {
+    return PageView.builder(
+      onPageChanged: (int index) {
+        if (index != context.read<TimeTrackingViewModel>().weekNumber) {
+          log('message');
+        }
+      },
+      controller: _pageController,
+      itemCount: 3,
+      itemBuilder: (context, index) {
+        return Row(
+          children: context
+              .read<TimeTrackingViewModel>()
+              .getTheWeekDayes(
+                  DateTime.now().add(Duration(days: (index - 1) * 7)))
+              .map((e) => Expanded(
+                    child: Consumer<TimeTrackingViewModel>(
+                        builder: (context, value, child) {
+                      return DayCard(
+                        day: e,
+                        isSelected: value.dateSelected == e.weekday &&
+                            value.weekNumber == index,
+                        index: index,
+                      );
+                    }),
+                  ))
+              .toList(),
+        );
+      },
+    );
+  }
+}
+
 class TimeTrackingItem extends StatelessWidget {
   final TimeEntity timeEntity;
   final double? width;
@@ -226,6 +279,7 @@ class TimeTrackingItem extends StatelessWidget {
               ),
             ),
             Container(
+              width: width,
               padding: const EdgeInsets.only(bottom: 5),
               child: Text(
                 timeEntity.taskName,
@@ -246,14 +300,21 @@ class TimeTrackingItem extends StatelessWidget {
 class DayCard extends StatelessWidget {
   final bool isSelected;
   final DateTime day;
+  final int index;
 
-  const DayCard({super.key, required this.isSelected, required this.day});
+  const DayCard(
+      {super.key,
+      required this.isSelected,
+      required this.day,
+      required this.index});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         context.read<TimeTrackingViewModel>().selectDay(day.weekday, day);
+        //context.read<TimeTrackingViewModel>().selectDay(index, day);
+        context.read<TimeTrackingViewModel>().changeWeekNumber(index);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -262,7 +323,7 @@ class DayCard extends StatelessWidget {
               : null,
           color: isSelected ? Colors.green : Colors.transparent,
         ),
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(children: [
           Text(
             DateFormat('EEE').format(day),
@@ -274,10 +335,11 @@ class DayCard extends StatelessWidget {
                         : Colors.grey,
                 fontSize: 16),
           ),
+          const SizedBox(height: 10),
           Text(
             day.day.toString(),
             style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black, fontSize: 20),
+                color: isSelected ? Colors.white : Colors.black, fontSize: 26),
           )
         ]),
       ),

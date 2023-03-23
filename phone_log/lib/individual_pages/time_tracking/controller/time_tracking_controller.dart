@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:phone_log/individual_pages/time_tracking/view/add_entry_views/add_note_view.dart';
 import 'package:phone_log/individual_pages/time_tracking/view/add_time_entry.dart';
@@ -32,9 +34,16 @@ class TimeTrackingViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  int weekNumber = 1;
+  void changeWeekNumber(int n) {
+    weekNumber = n;
+    notifyListeners();
+  }
+
   List<TextEditingController> otherControllers = [];
   List<EntryField> otherFields = [];
   int dateSelected = DateTime.now().weekday;
+  //int dateSelected = DateTime.now().weekday + 6;
   List<DateTime> getTheWeekDayes(DateTime d) {
     List<DateTime> dates = [];
     final start = d.subtract(Duration(days: d.weekday - 1));
@@ -43,6 +52,17 @@ class TimeTrackingViewModel extends ChangeNotifier {
     }
     return dates;
   }
+
+  getThe3WeeksDayes(DateTime d) {
+    final start = d.subtract(Duration(days: d.weekday - 1));
+    final startprevious = start.subtract(Duration(days: 7));
+    for (int i = 0; i < 21; i++) {
+      threeWeeksDays.add(startprevious.add(Duration(days: i)));
+    }
+    log(threeWeeksDays.length.toString());
+  }
+
+  var threeWeeksDays = [];
 
   void goToTheCurrentTime(ScrollController controller) {
     final now = TimeOfDay.now();
