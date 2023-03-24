@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:phone_log/core/extinsions/media_query.dart';
 import 'package:phone_log/individual_pages/time_tracking/controller/authController.dart';
+import 'package:phone_log/individual_pages/time_tracking/view/dashboard.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -11,7 +13,7 @@ class LoginScreen extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xffF6F6F6),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: context.width * .05),
         child: SingleChildScrollView(
           controller: context.read<AuthViewModel>().loginScroll,
           child: Container(
@@ -19,16 +21,18 @@ class LoginScreen extends StatelessWidget {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 50),
+                  SizedBox(height: context.height * .05),
                   Image.asset('assets/images/rareCrewLogo.PNG'),
                   const SizedBox(height: 30),
                   Text(
                     'Welcome',
+                    textScaleFactor: ScaleSize.textScaleFactor(context),
                     style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 20),
                   Text(
                     'Sign in to cotinue',
+                    textScaleFactor: ScaleSize.textScaleFactor(context),
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
                   ),
@@ -60,7 +64,13 @@ class LoginScreen extends StatelessWidget {
                   MaterialButton(
                     key: context.read<AuthViewModel>().loginButtonKey,
                     height: 65,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DashBoard(),
+                          ));
+                    },
                     color: Color(0xff14CB43),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,6 +81,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         Text(
                           'LOGIN',
+                          textScaleFactor: ScaleSize.textScaleFactor(context),
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         Icon(
@@ -100,6 +111,7 @@ class LoginScreen extends StatelessWidget {
                               child: Image.asset('assets/images/google.PNG')),
                           Text(
                             'Sign in with Google',
+                            textScaleFactor: ScaleSize.textScaleFactor(context),
                             style: TextStyle(
                                 color: Color(0xff212121), fontSize: 18),
                           ),
@@ -116,6 +128,7 @@ class LoginScreen extends StatelessWidget {
                           onPressed: () {},
                           child: Text(
                             'Forgot Password?',
+                            textScaleFactor: ScaleSize.textScaleFactor(context),
                             style:
                                 TextStyle(color: Color.fromRGBO(0, 0, 0, .5)),
                           ))
@@ -150,7 +163,8 @@ class LoginField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       scrollPadding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom + 200),
+          bottom:
+              MediaQuery.of(context).viewInsets.bottom + context.height * .25),
       textInputAction: keyboardButton,
       onTap: onTap,
       obscureText: isPassword,

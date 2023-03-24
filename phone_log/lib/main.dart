@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import 'individual_pages/time_tracking/controller/authController.dart';
 import 'individual_pages/time_tracking/view/login_screen.dart';
+import 'individual_pages/time_tracking/view/time_tracking.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,8 +53,8 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.scaffoldBG,
           primarySwatch: Colors.blue,
         ),
-        //home: const TimeTracking(),
-        home: const LoginScreen(),
+        home: const TimeTracking(),
+        //home: const LoginScreen(),
         // onGenerateRoute: appRouter.onGenerateRoute,
       ),
     );
