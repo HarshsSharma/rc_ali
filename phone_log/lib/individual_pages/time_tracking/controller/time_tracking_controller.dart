@@ -55,7 +55,7 @@ class TimeTrackingViewModel extends ChangeNotifier {
 
   getThe3WeeksDayes(DateTime d) {
     final start = d.subtract(Duration(days: d.weekday - 1));
-    final startprevious = start.subtract(Duration(days: 7));
+    final startprevious = start.subtract(const Duration(days: 7));
     for (int i = 0; i < 21; i++) {
       threeWeeksDays.add(startprevious.add(Duration(days: i)));
     }

@@ -22,12 +22,17 @@ class EntryOptions extends StatelessWidget {
                           .entityController
                           .text = e;
                     },
-                    child: RadioOption(
-                        isSelected: context
-                                .watch<TimeTrackingViewModel>()
-                                .selectedRadio ==
-                            viewModel.entites.indexOf(e),
-                        title: e),
+                    child: Column(
+                      children: [
+                        RadioOption(
+                            isSelected: context
+                                    .watch<TimeTrackingViewModel>()
+                                    .selectedRadio ==
+                                viewModel.entites.indexOf(e),
+                            title: e),
+                        if (viewModel.entites.last != e) Divider()
+                      ],
+                    ),
                   ))
               .toList()),
     );

@@ -27,14 +27,14 @@ class LoginScreen extends StatelessWidget {
                   Text(
                     'Welcome',
                     textScaleFactor: ScaleSize.textScaleFactor(context),
-                    style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 20),
                   Text(
                     'Sign in to cotinue',
                     textScaleFactor: ScaleSize.textScaleFactor(context),
                     style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                        const TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
                   ),
                   const SizedBox(height: 50),
                   LoginField(
@@ -68,23 +68,23 @@ class LoginScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DashBoard(),
+                            builder: (context) => const DashBoard(),
                           ));
                     },
-                    color: Color(0xff14CB43),
+                    color: const Color(0xff14CB43),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.arrow_forward_ios_rounded,
                           color: Colors.transparent,
                         ),
                         Text(
                           'LOGIN',
                           textScaleFactor: ScaleSize.textScaleFactor(context),
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: const TextStyle(color: Colors.white, fontSize: 20),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.arrow_forward_ios_rounded,
                           color: Colors.white,
                           size: 20,
@@ -98,21 +98,21 @@ class LoginScreen extends StatelessWidget {
                     decoration: BoxDecoration(border: Border.all()),
                     child: MaterialButton(
                       elevation: 0,
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       onPressed: () {},
                       color: Colors.transparent,
                       child: Row(
                         children: [
                           Container(
-                              margin: EdgeInsets.only(right: 30),
+                              margin: const EdgeInsets.only(right: 30),
                               height: double.infinity,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   border: Border(right: BorderSide())),
                               child: Image.asset('assets/images/google.PNG')),
                           Text(
                             'Sign in with Google',
                             textScaleFactor: ScaleSize.textScaleFactor(context),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Color(0xff212121), fontSize: 18),
                           ),
                         ],
@@ -130,7 +130,7 @@ class LoginScreen extends StatelessWidget {
                             'Forgot Password?',
                             textScaleFactor: ScaleSize.textScaleFactor(context),
                             style:
-                                TextStyle(color: Color.fromRGBO(0, 0, 0, .5)),
+                                const TextStyle(color: Color.fromRGBO(0, 0, 0, .5)),
                           ))
                     ],
                   )

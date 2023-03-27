@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class RadioOption extends StatelessWidget {
   final bool isSelected;
   final String title;
@@ -9,7 +8,7 @@ class RadioOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         children: [
           Container(
