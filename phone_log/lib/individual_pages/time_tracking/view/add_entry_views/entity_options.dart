@@ -30,7 +30,7 @@ class EntryOptions extends StatelessWidget {
                                     .selectedRadio ==
                                 viewModel.entites.indexOf(e),
                             title: e),
-                        if (viewModel.entites.last != e) Divider()
+                        if (viewModel.entites.last != e) const Divider()
                       ],
                     ),
                   ))

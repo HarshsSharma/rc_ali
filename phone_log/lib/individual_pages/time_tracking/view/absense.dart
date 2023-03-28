@@ -1,8 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:phone_log/core/components/tap_bar.dart';
 import 'package:phone_log/individual_pages/time_tracking/view/widget/absence_item.dart';
 
@@ -19,7 +17,7 @@ class AbsenseScreen extends StatelessWidget {
         toolbarHeight: kToolbarHeight,
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             size: 18,
           ),
@@ -31,9 +29,9 @@ class AbsenseScreen extends StatelessWidget {
         children: [
           CustomTapBar(
             children: [
-              TabBarItem('Today', 10),
-              TabBarItem('Upcoming', 22),
-              TabBarItem('Holidays', 1),
+              TabBarItem(label: 'Today', count: 10),
+              TabBarItem(label: 'Upcoming', count: 22),
+              TabBarItem(label: 'Holidays', count: 1),
             ],
             onChanged: (value) {
               log(value.toString());
@@ -42,10 +40,10 @@ class AbsenseScreen extends StatelessWidget {
           Expanded(
               child: ListView.separated(
                   itemBuilder: (context, index) {
-                    return AbsenceItem();
+                    return const AbsenceItem();
                   },
                   separatorBuilder: (context, index) {
-                    return Divider();
+                    return const Divider();
                   },
                   itemCount: 20))
         ],

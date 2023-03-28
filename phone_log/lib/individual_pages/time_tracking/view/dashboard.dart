@@ -3,7 +3,6 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:phone_log/individual_pages/time_tracking/controller/dashboard_controller.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/constant/app_colors.dart';
 import '../../../core/extinsions/media_query.dart';
 
 class DashBoard extends StatelessWidget {
@@ -38,7 +37,7 @@ class DashBoard extends StatelessWidget {
                         SlidableAction(
                           onPressed: (context) {},
                           backgroundColor: Colors.transparent,
-                          foregroundColor: Color.fromARGB(255, 19, 23, 30),
+                          foregroundColor: const Color.fromARGB(255, 19, 23, 30),
                           icon: Icons.tune_outlined,
                         ),
                       ],
@@ -147,7 +146,7 @@ class DashBoard extends StatelessWidget {
                       SlidableAction(
                         onPressed: (context) {},
                         backgroundColor: Colors.transparent,
-                        foregroundColor: Color.fromARGB(255, 19, 23, 30),
+                        foregroundColor: const Color.fromARGB(255, 19, 23, 30),
                         icon: Icons.tune,
                       ),
                     ],

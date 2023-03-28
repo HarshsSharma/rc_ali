@@ -55,23 +55,25 @@ class _CustomTapBarState extends State<CustomTapBar> {
                               fontSize: 16),
                         ),
                         const SizedBox(width: 8),
-                        Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: _isSelected == widget.children.indexOf(e)
-                                  ? const Color(0xff008AFF)
-                                  : const Color(0xffE5F3FF)),
-                          height: 25,
-                          width: 25,
-                          child: Text(
-                            e.count.toString(),
-                            style: TextStyle(
+                        if (e.count != null)
+                          Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
                                 color: _isSelected == widget.children.indexOf(e)
-                                    ? Colors.white
-                                    : const Color(0xff6E789A)),
+                                    ? const Color(0xff008AFF)
+                                    : const Color(0xffE5F3FF)),
+                            height: 25,
+                            width: 25,
+                            child: Text(
+                              e.count.toString(),
+                              style: TextStyle(
+                                  color:
+                                      _isSelected == widget.children.indexOf(e)
+                                          ? Colors.white
+                                          : const Color(0xff6E789A)),
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   ),
@@ -82,7 +84,7 @@ class _CustomTapBarState extends State<CustomTapBar> {
 
 class TabBarItem {
   final String label;
-  final int count;
+  final int? count;
 
-  TabBarItem(this.label, this.count);
+  TabBarItem({required this.label, this.count});
 }

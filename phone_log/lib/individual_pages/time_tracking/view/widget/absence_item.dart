@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class AbsenceItem extends StatelessWidget {
-  const AbsenceItem({super.key});
+  final VoidCallback? onTap;
+  const AbsenceItem({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       leading: const CircleAvatar(
         radius: 30,
         backgroundColor: Colors.amber,

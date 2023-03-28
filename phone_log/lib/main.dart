@@ -5,12 +5,10 @@ import 'package:phone_log/core/constant/app_colors.dart';
 import 'package:phone_log/core/router.dart';
 import 'package:phone_log/individual_pages/time_tracking/controller/dashboard_controller.dart';
 import 'package:phone_log/individual_pages/time_tracking/controller/time_tracking_controller.dart';
-import 'package:phone_log/individual_pages/time_tracking/view/absense.dart';
+import 'package:phone_log/individual_pages/time_tracking/view/time_off.dart';
 import 'package:provider/provider.dart';
 
 import 'individual_pages/time_tracking/controller/authController.dart';
-import 'individual_pages/time_tracking/view/login_screen.dart';
-import 'individual_pages/time_tracking/view/time_tracking.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,8 +56,9 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.scaffoldBG,
           primarySwatch: Colors.blue,
         ),
+        home: const TimeOff(),
         //home: const TimeTracking(),
-        home: AbsenseScreen(),
+        //home: AbsenseScreen(),
         //home: const LoginScreen(),
         // onGenerateRoute: appRouter.onGenerateRoute,
       ),
