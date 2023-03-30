@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:phone_log/asset_tracker/view/dashboard.dart';
 import 'package:phone_log/controller/layout_view_model.dart';
 import 'package:phone_log/core/constant/app_colors.dart';
 import 'package:phone_log/core/router.dart';
 import 'package:phone_log/individual_pages/time_tracking/controller/dashboard_controller.dart';
 import 'package:phone_log/individual_pages/time_tracking/controller/time_tracking_controller.dart';
-import 'package:phone_log/individual_pages/time_tracking/view/time_off.dart';
 import 'package:provider/provider.dart';
 
 import 'individual_pages/time_tracking/controller/authController.dart';
@@ -56,8 +56,9 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.scaffoldBG,
           primarySwatch: Colors.blue,
         ),
-        home: const TimeOff(),
+        //home: const TimeOff(),
         //home: const TimeTracking(),
+        home: const DashBoard(),
         //home: AbsenseScreen(),
         //home: const LoginScreen(),
         // onGenerateRoute: appRouter.onGenerateRoute,

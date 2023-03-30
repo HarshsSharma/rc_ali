@@ -10,6 +10,15 @@ class TimeOffRequests extends StatelessWidget {
       backgroundColor: const Color(0xffF6F6F6),
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 18,
+          ),
+        ),
         backgroundColor: const Color(0xff161652),
         toolbarHeight: kToolbarHeight,
         title: const Text('Time Off Requests'),

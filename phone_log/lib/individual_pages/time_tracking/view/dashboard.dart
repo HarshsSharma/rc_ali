@@ -37,7 +37,8 @@ class DashBoard extends StatelessWidget {
                         SlidableAction(
                           onPressed: (context) {},
                           backgroundColor: Colors.transparent,
-                          foregroundColor: const Color.fromARGB(255, 19, 23, 30),
+                          foregroundColor:
+                              const Color.fromARGB(255, 19, 23, 30),
                           icon: Icons.tune_outlined,
                         ),
                       ],
